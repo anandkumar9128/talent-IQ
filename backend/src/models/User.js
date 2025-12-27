@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-
+import mongoose from "mongoose";
 //create a user model using mongoose having fields name, email, profile pic, createdAt, updatedAt, and clerkId
 const userSchema = new mongoose.Schema({
     name: { type: String, required: true},
