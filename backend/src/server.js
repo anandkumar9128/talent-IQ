@@ -6,7 +6,7 @@ import { connectDb } from './lib/db.js';
 import { log } from 'console';
 import cors from 'cors';
 import {serve} from 'inngest/express'
-import { inngest } from './lib/inngest.js';
+import { functions, inngest } from './lib/inngest.js';
 
 const app=express();
 const __dirname = path.resolve();
@@ -14,7 +14,7 @@ const __dirname = path.resolve();
 app.use(express.json());
 app.use(cors({origin:ENV.CLIENT_URL,credentials:true}));
 
-app.use("/api/inngest",serve({client:inngest}))
+app.use("/api/inngest",serve({client:inngest},functions))
 
 app.get('/status',(req,res)=>{
     res.send("Hello World");
