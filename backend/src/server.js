@@ -14,7 +14,7 @@ const __dirname = path.resolve();
 app.use(express.json());
 app.use(cors({origin:ENV.CLIENT_URL,credentials:true}));
 
-app.use("/api/inngest",serve({client:inngest},functions))
+app.use("/api/inngest",serve({client:inngest,functions}))
 
 app.get('/status',(req,res)=>{
     res.send("Hello World");
