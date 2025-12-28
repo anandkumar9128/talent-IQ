@@ -7,14 +7,18 @@ import { log } from 'console';
 import cors from 'cors';
 import {serve} from 'inngest/express'
 import { functions, inngest } from './lib/inngest.js';
+import { clerkMiddleware } from '@clerk/express'
+import chatRoutes from './routes/chatRoute.js';
 
 const app=express();
 const __dirname = path.resolve();
 
 app.use(express.json());
 app.use(cors({origin:ENV.CLIENT_URL,credentials:true}));
+app.use(clerkMiddleware()); //this adds req auth
 
 app.use("/api/inngest",serve({client:inngest,functions}))
+app.use('/api/chat',chatRoutes)
 
 app.get('/status',(req,res)=>{
     res.send("Hello World");
